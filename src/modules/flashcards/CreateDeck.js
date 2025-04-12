@@ -31,6 +31,20 @@ export default function CreateDeck() {
   const [modalVisibleSubmitInfo, setModalVisibleSubmitInfo] = useState(false);
   /** @type {import('../interfaces').useState<boolean>} */
   const [modalVisibleQuestionInfo, setModalVisibleQuestionInfo] = useState(false);
+  /** @type {import('../interfaces').useState<boolean>} */
+  const [isLoading, setIsLoading] = useState(false);
+
+  const _setModalVisibleQuestionInfo = (b) => {
+    return (async () => {
+      setModalVisibleQuestionInfo(b);
+    })();
+  };
+
+  const _setModalVisibleSubmitInfo = (b) => {
+    return (async () => {
+      setModalVisibleSubmitInfo(b);
+    })();
+  };
 
   const onSelectFile = () => {
     (async () => {
@@ -65,6 +79,7 @@ export default function CreateDeck() {
   }
 
   const onPressSubmit = () => {
+    setIsLoading(true);
     (async () => {
       // TODO: add loading disable of form fields
       if (!deckName) throw 'Must specify a deck name!';
@@ -96,6 +111,7 @@ export default function CreateDeck() {
         setModalVisibleSubmitInfo(true);
       }).finally(() => {
         setModalVisibleSubmitInfo(true);
+        setIsLoading(false);
       });
   }
 
@@ -126,11 +142,11 @@ export default function CreateDeck() {
 
   return (
     <View style={styles.container}>
-      <OurModal modalVisible={modalVisibleQuestionInfo} setModalVisible={setModalVisibleQuestionInfo} message={messageQuestion} subMessage={subMessageQuestion} style={styles.infoModal} />
+      <OurModal modalVisible={modalVisibleQuestionInfo} setModalVisible={_setModalVisibleQuestionInfo} message={messageQuestion} subMessage={subMessageQuestion} style={styles.infoModal} />
       {errorMessage ? (
-        <OurModal modalVisible={modalVisibleSubmitInfo} setModalVisible={setModalVisibleSubmitInfo} message={errorMessage} subMessage={successfulUploadMessage} style={styles.errorModal} />
+        <OurModal modalVisible={modalVisibleSubmitInfo} setModalVisible={_setModalVisibleSubmitInfo} message={errorMessage} subMessage={successfulUploadMessage} style={styles.errorModal} />
       ) : successfulUploadMessage ? (
-        <OurModal modalVisible={modalVisibleSubmitInfo} setModalVisible={setModalVisibleSubmitInfo} message={successfulUploadMessage} style={styles.infoModal} />
+        <OurModal modalVisible={modalVisibleSubmitInfo} setModalVisible={_setModalVisibleSubmitInfo} message={successfulUploadMessage} style={styles.infoModal} />
       ) : <></>}
       <View style={styles.basicBackground}>
         <View style={styles.section}>
@@ -179,7 +195,7 @@ export default function CreateDeck() {
           <Button
             style={[styles.button, {marginTop: 50}]}
             bgColor="#253a5e"
-            disabled={false}
+            disabled={isLoading}
             caption="Submit"
             onPress={() => {
               onPressSubmit();

@@ -37,6 +37,12 @@ export default function FlashCardsHomeScreen({ isExtended, setIsExtended, naviga
   const [modalVisibleDelete, setModalVisibleDelete] = useState(false);
   const isFocused = useIsFocused();
 
+  const _setModalVisibleDelete = (b) => {
+    return (async () => {
+      setModalVisibleDelete(b);
+    })();
+  };
+
   useEffect(() => {
       if(!isFocused) return;
       fetchDecks();
@@ -96,7 +102,7 @@ export default function FlashCardsHomeScreen({ isExtended, setIsExtended, naviga
   // }, [decks]);
 
   const onSubmitDelete = (item) => () => {
-    (async () => {
+    return (async () => {
       const selectedDeck = decks.find(deck => deck.name === item);
       if (selectedDeck) {
         const db = await getDBConnection();
@@ -111,7 +117,7 @@ export default function FlashCardsHomeScreen({ isExtended, setIsExtended, naviga
   const renderCardNameItem = ({item}) => {
     return (
       <View style={styles.cardContainer}>
-        <OurModal modalVisible={modalVisibleDelete} setModalVisible={setModalVisibleDelete} message={'Delete Deck'} subMessage={'Are you sure?'} onSubmit={onSubmitDelete(item)} closeText={'Cancel'} submitText={'Delete'} />
+        <OurModal modalVisible={modalVisibleDelete} setModalVisible={_setModalVisibleDelete} message={'Delete Deck'} subMessage={'Are you sure?'} onSubmit={onSubmitDelete(item)} closeText={'Cancel'} submitText={'Delete'} />
         <TouchableOpacity
           style={styles.cardButton}
         >

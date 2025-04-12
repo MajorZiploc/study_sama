@@ -2,8 +2,6 @@
 
 ## MVP
 
-CreateDeck and OurModal: TODO: add loading disable of form fields
-
 Figure out steps needed for publishing to Google Play Store
 
 ## Rest

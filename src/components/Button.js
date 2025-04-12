@@ -118,11 +118,13 @@ export default function RNSButton(props) {
     );
   }
 
+  const _disabled = props.disabled == null ? false : props.disabled
+
   return (
     <TouchableOpacity
       accessibilityTraits="button"
       onPress={props.onPress}
-      disabled={props.disabled ?? false}
+      disabled={_disabled}
       activeOpacity={0.8}
       style={[
         styles.container,

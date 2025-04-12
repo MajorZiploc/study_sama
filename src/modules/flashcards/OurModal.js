@@ -1,8 +1,10 @@
-import React  from 'react';
+import React, {useState}  from 'react';
 import {Modal, StyleSheet, Text, View} from 'react-native';
 import { Button } from '../../components';
 
 const OurModal = ({modalVisible, setModalVisible, message, style, subMessage, onSubmit, closeText, submitText}) => {
+  /** @type {import('../interfaces').useState<boolean>} */
+  const [isLoading, setIsLoading] = useState(false);
   const _closeText = closeText || 'Close';
   const hasSubmit = submitText && onSubmit;
   return (
@@ -28,18 +30,30 @@ const OurModal = ({modalVisible, setModalVisible, message, style, subMessage, on
               style={[styles.button]}
               primary={!hasSubmit}
               bordered={hasSubmit}
+              disabled={isLoading}
               bgColor="#44a88d"
               caption={_closeText}
-              onPress={() => setModalVisible(!modalVisible)}
+              onPress={() => {
+                setIsLoading(true);
+                setModalVisible(!modalVisible).finally(() => {
+                  setIsLoading(false);
+                });
+              }}
             />
             {hasSubmit && (<>
               <View style={{margin: 20}}></View>
               <Button
                 style={[styles.button]}
                 primary
+                disabled={isLoading}
                 bgColor="#44a88d"
                 caption={submitText}
-                onPress={onSubmit}
+                onPress={() => {
+                  setIsLoading(true);
+                  onSubmit().finally(() => {
+                    setIsLoading(false);
+                  });
+                }}
               />
             </>)}
           </View>
