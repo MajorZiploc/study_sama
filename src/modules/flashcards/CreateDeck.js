@@ -36,7 +36,6 @@ export default function CreateDeck() {
     (async () => {
       const [{name, uri}] = await pick({ mode: 'import', allowMultiSelection: false, type: [types.plainText] });
       if (!name) throw "invalid file - file has no name";
-      // TODO: this creates a copy in the apps storage - would be nice to delete this copy after getting the file content
       const [docContent] = await keepLocalCopy({
         files: [
           {
@@ -53,6 +52,8 @@ export default function CreateDeck() {
         // TODO: consider storing the localUri instead of whole fileContent here - then read file (hopefully as a stream) in the submit action when creating the deck
         setFileContent(_fileContent);
         if (!deckName) setDeckName(name);
+        // NOTE: deleting file
+        await RNFS.unlink(docContent.localUri);
       }
     })().catch((err) => {
       if (err.toString().includes('user canceled')) {
@@ -65,7 +66,6 @@ export default function CreateDeck() {
 
   const onPressSubmit = () => {
     (async () => {
-      // TODO: if home page doesnt refresh then manage decks in redux and refresh the getDecks at the end of this for the home page
       // TODO: add loading disable of form fields
       if (!deckName) throw 'Must specify a deck name!';
       if (!fileContent) throw 'no file was selected because no file content was found';
