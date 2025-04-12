@@ -2,7 +2,9 @@
 
 ## MVP
 
-Review TODOs in code and address if needed
+CreateDeck and OurModal: TODO: add loading disable of form fields
+
+Figure out steps needed for publishing to Google Play Store
 
 ## Rest
 
