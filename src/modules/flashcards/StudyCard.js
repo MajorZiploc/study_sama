@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import FlipCard from 'react-native-flip-card';
+import Icon from 'react-native-vector-icons/AntDesign';
+import OurModal from './OurModal';
 
 export const Gray300 = '#E0E0E0'
 export const Gray100 = '#F5F5F5'
@@ -21,9 +24,49 @@ export const { width, height } = Dimensions.get('window');
  */
 function StudyCard(props) {
   const { cardData, idx, cardCount } = props;
+  /** @type {import('../interfaces').useState<boolean>} */
+  const [modalVisibleQuestionInfo, setModalVisibleQuestionInfo] = useState(false);
+
+  const onPressQuestion = () => {
+    console.log('modalVisibleQuestionInfo');
+    console.log(modalVisibleQuestionInfo);
+    setModalVisibleQuestionInfo(true);
+  };
+
+  const _setModalVisibleQuestionInfo = (b) => {
+    return (async () => {
+      setModalVisibleQuestionInfo(b);
+    })();
+  };
+
+  const messageQuestion = (<View>
+    <Text style={styles.questionInfoTitle}>
+      How to study:
+    </Text>
+  </View>)
+
+  const subMessageQuestion = (<View>
+    <Text style={styles.questionInfoBody}>
+      Tap the flashcard to flip it
+    </Text>
+    <Text style={styles.questionInfoBody}>
+      Swipe the flashcard to the left to go to next card
+    </Text>
+    <Text style={styles.questionInfoBody}>
+      Swipe the flashcard to the right to go to next card
+    </Text>
+    <Text style={styles.questionInfoBody}>
+      Session loops infinitely
+    </Text>
+    <Text style={styles.questionInfoBody}>
+      Tap back to decks view to pick another deck or to reshuffle this deck
+    </Text>
+  </View>);
+
   if (!cardData) return <></>;
   return (
     <ScrollView>
+      <OurModal modalVisible={modalVisibleQuestionInfo} setModalVisible={_setModalVisibleQuestionInfo} message={messageQuestion} subMessage={subMessageQuestion} style={styles.infoModal} />
       <View>
         <Text style={styles.cardStats}>{idx + 1} of {cardCount}</Text>
       </View>
@@ -40,6 +83,14 @@ function StudyCard(props) {
           <Text style={styles.back}>{cardData.back}</Text>
         </View>
       </FlipCard>
+      <View style={styles.footer}>
+        <TouchableOpacity
+          style={styles.questionButton}
+          onPressOut={onPressQuestion}
+        >
+          <Icon name="questioncircle" size={25} color="#000000" />
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 }
@@ -79,6 +130,22 @@ const styles = StyleSheet.create({
   },
   cardStats: {
     color: '#000000',
+  },
+  footer: {
+    marginLeft: 'auto',
+    marginRight: 8,
+  },
+  questionButton: {
+    marginLeft: 10,
+    padding: 5,
+  },
+  questionInfoTitle: {
+    color: '#000000',
+    fontSize: 16,
+  },
+  questionInfoBody: {
+    color: '#000000',
+    fontSize: 14,
   },
 });
 
