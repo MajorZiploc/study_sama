@@ -61,17 +61,34 @@ npx react-native log-ios
 ## NOTE: console.log should appear without this in the main running terminal. if it doesnt, then use one of these and it will start to show, then you can stop the details logs
 
 <!-- <a href='https://play.google.com/store/apps/details?id=com.studysama.upd'><img width="200" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a> -->
-<!-- <a href='https://play.google.com/store/apps/details?id=com.studysama.upd'><img width="200" alt='Download on App Store' src='https://i.imgur.com/7IxtMV0.png'/></a> -->
+<!-- <a href='https://play.google.com/store/apps/details?id=com.studysama.upd'><img width="200" alt='Download on App Store' src='https://i.imgur.com/hash.png'/></a> -->
 
-## What's inside
+# debug shell on connected phone
 
-- Always up-to-date React Native scaffolding
-- UI/UX Design from industry experts
-- Modular and well-documented structure for application code
-- Redux for state management
-- React Navigation for simple navigation
-- Disk-persisted application state caching
-- More than 16 Ready-to-use Pages
+adb shell
+
+# release
+
+https://developer.android.com/guide/app-bundle/test#deploy-using-studio
+
+from the above:
+
+  If you want to test building your app as an app bundle, and then deploying APKs from that app bundle to your connected device, you need to edit the default Run/Debug configuration as follows:
+
+  Select Run > Edit Configurations from the menu bar.
+  Select a run/debug configuration from the left pane.
+  In the right pane, select the General tab.
+  Select APK from app bundle from the dropdown menu next to Deploy.
+  If your app includes an instant app experience that you want to test, check the box next to Deploy as an instant app.
+  If your app includes feature modules, you can select which modules you want to deploy by checking the box next to each module. By default, Android Studio deploys all feature modules and always deploys the base app module.
+  Click Apply or OK.
+  When you select Run > Run from the menu bar, Android Studio builds an app bundle and uses it to deploy only the APKs required by the connected device and feature modules you selected.
+
+https://developer.android.com/studio/publish/preparing#kts
+
+## this makes a bundle but doesnt seem to be used when releasing locally. likely just on the play store
+
+npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
 
 ## Getting Started
 
