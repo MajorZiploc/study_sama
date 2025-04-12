@@ -69,6 +69,12 @@ adb shell
 
 # release
 
+first:
+
+npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+
+followed by:
+
 https://developer.android.com/guide/app-bundle/test#deploy-using-studio
 
 from the above:
@@ -85,10 +91,6 @@ from the above:
   When you select Run > Run from the menu bar, Android Studio builds an app bundle and uses it to deploy only the APKs required by the connected device and feature modules you selected.
 
 https://developer.android.com/studio/publish/preparing#kts
-
-## this makes a bundle but doesnt seem to be used when releasing locally. likely just on the play store
-
-npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
 
 ## Getting Started
 
