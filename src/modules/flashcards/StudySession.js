@@ -28,7 +28,7 @@ function StudySession({ loadCards, loadCardsAsync, cards, isDefinitionFirst, isS
   }, [cards, isDefinitionFirst, isShuffled]);
 
   return (
-    <View>
+    <View style={styles.background}>
       <Swiper
         cards={studyCards}
         infinite={true}
@@ -64,6 +64,9 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 8,
     marginBottom: 8,
+  },
+  background: {
+    backgroundColor: '#577277',
   },
 });
 

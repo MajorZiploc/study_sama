@@ -46,7 +46,7 @@ function StudyCard(props) {
 
 const styles = StyleSheet.create({
   flipCard: {
-    backgroundColor: White,
+    backgroundColor: '#e0e7e4',
     alignItems: 'center',
     shadowOpacity: 0.5,
     shadowOffset: {

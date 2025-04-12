@@ -188,7 +188,7 @@ export default function FlashCardsHomeScreen({ isExtended, setIsExtended, naviga
           <View style={styles.cardSetNames}>
           <FlatList
             keyExtractor={(item, idx) => `${item}-${idx}`}
-            style={{ backgroundColor: '#ebede9', paddingHorizontal: 15 }}
+            style={{ backgroundColor: '#577277', paddingHorizontal: 15 }}
             data={(decks ?? []).filter(deck => deck.name.toLowerCase().includes(query.toLowerCase())).map(deck => deck.name)}
             renderItem={renderCardNameItem}
           />
