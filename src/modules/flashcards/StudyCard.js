@@ -33,6 +33,13 @@ function StudyCard(props) {
     setModalVisibleQuestionInfo(true);
   };
 
+  /** @type {(text: string) => any} */
+  const calcFontSize = (text) => {
+    console.log('text.length');
+    console.log(text.length);
+    return {fontSize: Math.max(...[25 - Math.floor(text.length / 100), 1])};
+  };
+
   const _setModalVisibleQuestionInfo = (b) => {
     return (async () => {
       setModalVisibleQuestionInfo(b);
@@ -77,10 +84,10 @@ function StudyCard(props) {
         flipVertical={false}
       >
         <View style={styles.flipSide}>
-          <Text style={styles.face}>{cardData.front}</Text>
+          <Text style={[styles.face, calcFontSize(cardData.front)]}>{cardData.front}</Text>
         </View>
         <View style={styles.flipSide}>
-          <Text style={styles.back}>{cardData.back}</Text>
+          <Text style={[styles.back, calcFontSize(cardData.back)]}>{cardData.back}</Text>
         </View>
       </FlipCard>
       <View style={styles.footer}>
@@ -123,7 +130,6 @@ const styles = StyleSheet.create({
     color: Red,
   },
   back: {
-    fontSize: 25,
     textAlign: 'center',
     width: width - 40,
     color: Green,
