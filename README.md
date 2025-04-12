@@ -2,9 +2,11 @@
 
 ## MVP
 
-cleanup git history
+Review TODOs in code and address if needed
 
 ## Rest
+
+add more type information
 
 add edit mode toggle in deck list view
 

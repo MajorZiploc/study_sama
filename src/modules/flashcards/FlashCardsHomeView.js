@@ -2,15 +2,13 @@ import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   View,
-  ImageBackground,
   FlatList,
 } from 'react-native';
 import { Text } from '../../components/StyledText';
-import { Button, RadioGroup } from '../../components';
-import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import { Button } from '../../components';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Entypo';
-import {createCardTable, createDeckTable, dropCardTable, dropDeckTable, getCards, getDBConnection, getDecks, saveCards, saveDecks, deleteDecks} from './SqliteData';
-import RNFS from 'react-native-fs';
+import {createCardTable, createDeckTable, getCards, getDBConnection, getDecks, deleteDecks} from './SqliteData';
 import OurModal from './OurModal';
 import {useIsFocused} from '@react-navigation/native';
 
@@ -19,17 +17,17 @@ import {useIsFocused} from '@react-navigation/native';
  * @typedef {import('../interfaces').DBDeck} DBDeck
  */
 
-const basicCards = [...Array(5).keys()].map((_, idx) => ({
-  term: `the term ${idx}`,
-  definition: `the definition ${idx}`,
-}));
+// const basicCards = [...Array(5).keys()].map((_, idx) => ({
+//   term: `the term ${idx}`,
+//   definition: `the definition ${idx}`,
+// }));
 
-const cardSetNames = [...Array(50).keys()].map((_, idx) => `Set ${idx}`);
+// const cardSetNames = [...Array(50).keys()].map((_, idx) => `Set ${idx}`);
 
-const cardSets = cardSetNames.map(cn => ({
-  cards: basicCards.map(c => ({term: `${cn} ${c.term}`, definition: `${cn} ${c.definition}`})),
-  name: cn,
-}))
+// const cardSets = cardSetNames.map(cn => ({
+//   cards: basicCards.map(c => ({term: `${cn} ${c.term}`, definition: `${cn} ${c.definition}`})),
+//   name: cn,
+// }))
 
 export default function FlashCardsHomeScreen({ isExtended, setIsExtended, navigation, loadCards, loadCardsAsync }) {
   const [query, setQuery] = useState('');

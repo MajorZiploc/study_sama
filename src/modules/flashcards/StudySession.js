@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import { Button } from '../../components';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import Swiper from 'react-native-deck-swiper';
 import StudyCard from './StudyCard';
 

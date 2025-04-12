@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
   ImageBackground,
-  FlatList,
-  SafeAreaView,
 } from 'react-native';
-import RNFS from 'react-native-fs';
 
-import { Text } from '../../components/StyledText';
-import { Button, Dropdown, RadioGroup } from '../../components';
-import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/Entypo';
+import { RadioGroup } from '../../components';
 
 export default function Settings({ isDefinitionFirst, isDefinitionFirstSet, isShuffled, isShuffledSet }) {
 
