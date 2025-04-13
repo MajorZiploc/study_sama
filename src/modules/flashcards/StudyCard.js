@@ -60,13 +60,13 @@ function StudyCard(props) {
       Swipe the flashcard to the left to go to next card
     </Text>
     <Text style={styles.questionInfoBody}>
-      Swipe the flashcard to the right to go to next card
+      Swipe the flashcard to the right to go to previous card
     </Text>
     <Text style={styles.questionInfoBody}>
       Session loops infinitely
     </Text>
     <Text style={styles.questionInfoBody}>
-      Tap back to decks view to pick another deck or to reshuffle this deck
+      Tap back button to decks view to pick another deck or to reshuffle this deck
     </Text>
   </View>);
 
