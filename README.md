@@ -4,6 +4,8 @@
 
 Fix importing text file. for some reason only 4 lines are read
 
+Cleanup console.logs
+
 Figure out steps needed for publishing to Google Play Store
 
 ## Rest
