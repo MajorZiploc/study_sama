@@ -90,7 +90,7 @@ export default function CreateDeck() {
       if (existingConflictingDecks.length > 0) throw `Deck named: ${deckName} already exists`;
       await saveDecks(db, [{name: deckName}]);
       const deck = (await getDecks(db, [deckName]))[0];
-      const cards = fileContent.split("\n").filter(line => line.includes(_cardDelimiter)).filter((l, idx) => idx < 4).map(line => {
+      const cards = fileContent.split("\n").filter(line => line.includes(_cardDelimiter)).map(line => {
         const splitLine = line.split(_cardDelimiter);
         const term = splitLine[0];
         const definition = splitLine.splice(1).join(_cardDelimiter);
