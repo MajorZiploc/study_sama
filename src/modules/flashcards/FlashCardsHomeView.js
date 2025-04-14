@@ -108,7 +108,7 @@ export default function FlashCardsHomeScreen({ isExtended, setIsExtended, naviga
             </Text>
             <Text style={styles.cardSetNamesTitle}>Decks</Text>
             <TextInput
-              placeholder='Search Decks'
+              placeholder='Search Decks...'
               placeholderTextColor={'#777777'}
               style={styles.searchBox}
               value={query}
@@ -267,6 +267,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     flexGrow: 3,
     marginRight: 10,
+    color: '#000000',
   },
   cardContainer: {
     flexDirection: 'row',

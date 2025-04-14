@@ -4,10 +4,11 @@ import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { PersistGate } from 'redux-persist/integration/react';
 import { NavigationContainer } from '@react-navigation/native';
 import { colors } from './src/styles';
-
 import { store, persistor } from './src/redux/store';
-
 import AppView from './src/modules/AppViewContainer';
+import Orientation from 'react-native-orientation-locker';
+
+Orientation.lockToPortrait();
 
 export default function App() {
   return (
