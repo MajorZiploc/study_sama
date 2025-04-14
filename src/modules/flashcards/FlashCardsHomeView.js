@@ -33,15 +33,7 @@ export default function FlashCardsHomeScreen({ isExtended, setIsExtended, naviga
   const [query, setQuery] = useState('');
   /** @type {import('../interfaces').useState<DBDeck[]>} */
   const [decks, setDecks] = useState([]);
-  /** @type {import('../interfaces').useState<boolean>} */
-  const [modalVisibleDelete, setModalVisibleDelete] = useState(false);
   const isFocused = useIsFocused();
-
-  const _setModalVisibleDelete = (b) => {
-    return (async () => {
-      setModalVisibleDelete(b);
-    })();
-  };
 
   useEffect(() => {
       if(!isFocused) return;
@@ -101,6 +93,75 @@ export default function FlashCardsHomeScreen({ isExtended, setIsExtended, naviga
   //   })();
   // }, [decks]);
 
+  return (
+    <View style={styles.container}>
+      <View style={styles.basicBackground}>
+      {/* <ImageBackground */}
+      {/*   source={require('../../../assets/images/background.png')} */}
+      {/*   style={styles.bgImage} */}
+      {/*   resizeMode="cover" */}
+      {/* > */}
+        <View style={styles.section}>
+          <View style={styles.cardSetNamesTitleBox}>
+            <Text>
+              <Icon name="documents" size={25} color="white" />
+            </Text>
+            <Text style={styles.cardSetNamesTitle}>Decks</Text>
+            <TextInput
+              placeholder='Search Decks'
+              placeholderTextColor={'#777777'}
+              style={styles.searchBox}
+              value={query}
+              onChangeText={setQuery}
+            />
+          </View>
+          <View style={styles.cardSetNames}>
+          <FlatList
+            keyExtractor={(item, idx) => `${item}-${idx}`}
+            style={{ backgroundColor: '#577277', paddingHorizontal: 15 }}
+            data={(decks ?? []).filter(deck => deck.name.toLowerCase().includes(query.toLowerCase())).map(deck => deck.name)}
+            renderItem={renderCardNameItem({fetchDecks, decks, loadCards, navigation})}
+          />
+          </View>
+          <Button
+            style={[styles.button]}
+            primary
+            bgColor="#253a5e"
+            caption="Create Deck"
+            onPress={() => {
+              navigation.navigate('Create Deck');
+            }}
+          />
+          <Button
+            style={[styles.button]}
+            primary
+            bgColor="#253a5e"
+            caption="Settings"
+            onPress={() => {
+              navigation.navigate('Settings');
+            }}
+          />
+        </View>
+      {/* </ImageBackground> */}
+      </View>
+    </View>
+  );
+}
+
+const renderCardNameItem = ({fetchDecks, decks, loadCards, navigation}) => ({item}) => {
+  return <RenderCardNameItem item={item} fetchDecks={fetchDecks} decks={decks} loadCards={loadCards} navigation={navigation} />
+};
+
+function RenderCardNameItem({item, fetchDecks, decks, loadCards, navigation}) {
+  /** @type {import('../interfaces').useState<boolean>} */
+  const [modalVisibleDelete, setModalVisibleDelete] = useState(false);
+
+  const _setModalVisibleDelete = (b) => {
+    return (async () => {
+      setModalVisibleDelete(b);
+    })();
+  };
+
   const onSubmitDelete = (item) => () => {
     return (async () => {
       const selectedDeck = decks.find(deck => deck.name === item);
@@ -114,7 +175,6 @@ export default function FlashCardsHomeScreen({ isExtended, setIsExtended, naviga
     });
   };
 
-  const renderCardNameItem = ({item}) => {
     return (
       <View style={styles.cardContainer}>
         <OurModal modalVisible={modalVisibleDelete} setModalVisible={_setModalVisibleDelete} message={'Delete Deck'} subMessage={'Are you sure?'} onSubmit={onSubmitDelete(item)} closeText={'Cancel'} submitText={'Delete'} />
@@ -163,60 +223,6 @@ export default function FlashCardsHomeScreen({ isExtended, setIsExtended, naviga
     );
   };
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.basicBackground}>
-      {/* <ImageBackground */}
-      {/*   source={require('../../../assets/images/background.png')} */}
-      {/*   style={styles.bgImage} */}
-      {/*   resizeMode="cover" */}
-      {/* > */}
-        <View style={styles.section}>
-          <View style={styles.cardSetNamesTitleBox}>
-            <Text>
-              <Icon name="documents" size={25} color="white" />
-            </Text>
-            <Text style={styles.cardSetNamesTitle}>Decks</Text>
-            <TextInput
-              placeholder='Search Decks'
-              placeholderTextColor={'#777777'}
-              style={styles.searchBox}
-              value={query}
-              onChangeText={setQuery}
-            />
-          </View>
-          <View style={styles.cardSetNames}>
-          <FlatList
-            keyExtractor={(item, idx) => `${item}-${idx}`}
-            style={{ backgroundColor: '#577277', paddingHorizontal: 15 }}
-            data={(decks ?? []).filter(deck => deck.name.toLowerCase().includes(query.toLowerCase())).map(deck => deck.name)}
-            renderItem={renderCardNameItem}
-          />
-          </View>
-          <Button
-            style={[styles.button]}
-            primary
-            bgColor="#253a5e"
-            caption="Create Deck"
-            onPress={() => {
-              navigation.navigate('Create Deck');
-            }}
-          />
-          <Button
-            style={[styles.button]}
-            primary
-            bgColor="#253a5e"
-            caption="Settings"
-            onPress={() => {
-              navigation.navigate('Settings');
-            }}
-          />
-        </View>
-      {/* </ImageBackground> */}
-      </View>
-    </View>
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
