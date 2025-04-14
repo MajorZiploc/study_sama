@@ -2,6 +2,8 @@
 
 ## MVP
 
+Fix importing text file. for some reason only 4 lines are read
+
 Figure out steps needed for publishing to Google Play Store
 
 ## Rest
