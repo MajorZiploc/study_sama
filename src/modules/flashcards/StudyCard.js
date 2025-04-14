@@ -28,15 +28,11 @@ function StudyCard(props) {
   const [modalVisibleQuestionInfo, setModalVisibleQuestionInfo] = useState(false);
 
   const onPressQuestion = () => {
-    console.log('modalVisibleQuestionInfo');
-    console.log(modalVisibleQuestionInfo);
     setModalVisibleQuestionInfo(true);
   };
 
   /** @type {(text: string) => any} */
   const calcFontSize = (text) => {
-    console.log('text.length');
-    console.log(text.length);
     return {fontSize: Math.max(...[25 - Math.floor(text.length / 100), 1])};
   };
 

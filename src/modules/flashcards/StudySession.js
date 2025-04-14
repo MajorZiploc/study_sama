@@ -35,16 +35,16 @@ function StudySession({ loadCards, loadCardsAsync, cards, isDefinitionFirst, isS
         cardIndex={cardIndex}
         renderCard={(cardData, idx) => <StudyCard cardData={cardData} idx={idx} cardCount={studyCards.length} />}
         onSwipedLeft={index => {
-          console.log('onSwipedLeft');
-          console.log(index);
+          // console.log('onSwipedLeft');
+          // console.log(index);
         }}
         onSwipedRight={index => {
-          console.log('onSwipedRight');
-          console.log(index);
+          // console.log('onSwipedRight');
+          // console.log(index);
         }}
         goBackToPreviousCardOnSwipeRight={true}
         onSwipedAll={() => {
-          console.log("all done!");
+          // console.log("all done!");
         }}
         animateOverlayLabelsOpacity
         animateCardOpacity

@@ -2,8 +2,6 @@
 
 ## MVP
 
-Cleanup console.logs
-
 Figure out steps needed for publishing to Google Play Store
 
 ## Rest
