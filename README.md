@@ -4,6 +4,11 @@
 
 Figure out steps needed for publishing to Google Play Store
 
+  continue main store page listing
+  https://play.google.com/console/u/0/developers/5875167538135761129/app/4974522416372123468/main-store-listing
+  steps for all things needed to upload app
+  https://www.youtube.com/watch?v=L9sU_aGeQEY&t=395s&ab_channel=iRekhaTechSolutions
+
 ## Rest
 
 add more type information
