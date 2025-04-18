@@ -2,6 +2,8 @@
 
 ## MVP
 
+redeploy app locally
+
 Figure out steps needed for publishing to Google Play Store
 
 ## Rest
@@ -91,6 +93,27 @@ from the above:
   When you select Run > Run from the menu bar, Android Studio builds an app bundle and uses it to deploy only the APKs required by the connected device and feature modules you selected.
 
 https://developer.android.com/studio/publish/preparing#kts
+https://developer.android.com/studio/publish#publishing-release
+
+
+# Build and Release Process
+
+// create a key: https://reactnative.dev/docs/signed-apk-android
+keytool -genkeypair -v -storetype PKCS12 -keystore study-sama-upload-key.keystore -alias study-sama-upload-key -keyalg RSA -keysize 2048 -validity 10000
+
+// prepare gradle keystore values
+
+//// put this in ~/.gradle/gradle.properties
+///// replace ***** with passwords
+```
+MYAPP_UPLOAD_STORE_FILE=my-upload-key.keystore
+MYAPP_UPLOAD_KEY_ALIAS=my-key-alias
+MYAPP_UPLOAD_STORE_PASSWORD=*****
+MYAPP_UPLOAD_KEY_PASSWORD=*****
+```
+
+// make bundle? - needs to be run at ./android/app/
+npx react-native build-android --mode=release
 
 ## Getting Started
 
