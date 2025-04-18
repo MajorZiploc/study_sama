@@ -75,6 +75,13 @@ npx react-native bundle --platform android --dev false --entry-file index.js --b
 
 followed by:
 
+Android Studio
+
+  Build -> Generate Signed App Bundled or APK
+
+  make sure to include a keystore
+    $HOME/.keystore/upload-study-sama.jks
+
 https://developer.android.com/guide/app-bundle/test#deploy-using-studio
 
 from the above:
@@ -91,13 +98,18 @@ from the above:
   When you select Run > Run from the menu bar, Android Studio builds an app bundle and uses it to deploy only the APKs required by the connected device and feature modules you selected.
 
 https://developer.android.com/studio/publish/preparing#kts
-https://developer.android.com/studio/publish#publishing-release
+https://developer.android.com/studio/publish/app-signing
+https://support.google.com/googleplay/android-developer/answer/9859152?hl=en
+https://play.google.com/console/u/0/signup
 
 
-# Build and Release Process
+# Build and Release Process Experimental Workflow
 
 // create a key: https://reactnative.dev/docs/signed-apk-android
 keytool -genkeypair -v -storetype PKCS12 -keystore study-sama-upload-key.keystore -alias study-sama-upload-key -keyalg RSA -keysize 2048 -validity 10000
+  NOTE: do this through android studio ui instead!!!
+    https://developer.android.com/studio/publish#publishing-release
+      C:\Users\LakeM\.keystore\upload-study-sama.jks
 
 // prepare gradle keystore values
 
