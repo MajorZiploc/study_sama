@@ -91,6 +91,40 @@ from the above:
   When you select Run > Run from the menu bar, Android Studio builds an app bundle and uses it to deploy only the APKs required by the connected device and feature modules you selected.
 
 https://developer.android.com/studio/publish/preparing#kts
+https://developer.android.com/studio/publish#publishing-release
+
+
+# Build and Release Process
+
+// create a key: https://reactnative.dev/docs/signed-apk-android
+keytool -genkeypair -v -storetype PKCS12 -keystore study-sama-upload-key.keystore -alias study-sama-upload-key -keyalg RSA -keysize 2048 -validity 10000
+
+// prepare gradle keystore values
+
+//// put this in ~/.gradle/gradle.properties
+///// replace ***** with passwords
+```
+MYAPP_UPLOAD_STORE_FILE=my-upload-key.keystore
+MYAPP_UPLOAD_KEY_ALIAS=my-key-alias
+MYAPP_UPLOAD_STORE_PASSWORD=*****
+MYAPP_UPLOAD_KEY_PASSWORD=*****
+```
+
+// make bundle? - needs to be run at ./android/app/
+npx react-native build-android --mode=release
+
+^ failing -- look into aapt (or maybe aapt2?) here:
+powershell.exe -c 'cd $env:ANDROID_HOME/build-tools/34.0.0; ./aapt.exe'
+https://developer.android.com/tools
+
+  might be that icons are to big (generate big .xml files)
+  https://stackoverflow.com/questions/52229987/android-studio-with-java-compiler-error-string-too-large-to-encode-using-utf-8
+
+  check apk file
+  ./aapt dump --values resources MyAppName-regular-debug.apk | grep -B 1 'STRING_TOO_LARGE'
+    should be able to find something like the following:
+      resource 0x7f0f015a com.example.app:string/eula: t=0x03 d=0x00000f10 (s=0x0008 r=0x00)
+        (string8) "STRING_TOO_LARGE"
 
 ## Getting Started
 
