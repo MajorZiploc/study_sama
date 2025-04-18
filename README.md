@@ -8,6 +8,8 @@ Figure out steps needed for publishing to Google Play Store
   https://play.google.com/console/u/0/developers/5875167538135761129/app/4974522416372123468/main-store-listing
   steps for all things needed to upload app
   https://www.youtube.com/watch?v=L9sU_aGeQEY&t=395s&ab_channel=iRekhaTechSolutions
+  explains what app bundle its expecting
+  https://support.google.com/googleplay/android-developer/answer/9859152?hl=en
 
 ## Rest
 
