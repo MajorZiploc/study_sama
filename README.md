@@ -115,6 +115,19 @@ MYAPP_UPLOAD_KEY_PASSWORD=*****
 // make bundle? - needs to be run at ./android/app/
 npx react-native build-android --mode=release
 
+^ failing -- look into aapt (or maybe aapt2?) here:
+powershell.exe -c 'cd $env:ANDROID_HOME/build-tools/34.0.0; ./aapt.exe'
+https://developer.android.com/tools
+
+  might be that icons are to big (generate big .xml files)
+  https://stackoverflow.com/questions/52229987/android-studio-with-java-compiler-error-string-too-large-to-encode-using-utf-8
+
+  check apk file
+  ./aapt dump --values resources MyAppName-regular-debug.apk | grep -B 1 'STRING_TOO_LARGE'
+    should be able to find something like the following:
+      resource 0x7f0f015a com.example.app:string/eula: t=0x03 d=0x00000f10 (s=0x0008 r=0x00)
+        (string8) "STRING_TOO_LARGE"
+
 ## Getting Started
 
 #### 1. Clone and Install
