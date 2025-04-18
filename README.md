@@ -171,3 +171,7 @@ Or, if you prefer Android:
 ```
 yarn run:android
 ```
+
+# Privacy references
+
+https://github.com/WrichikBasu/ShakeAlarmClock/blob/master/PRIVACY_POLICY.md?plain=1
