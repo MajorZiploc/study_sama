@@ -94,6 +94,7 @@ android {
             keyPassword 'android'
         }
         release {
+            // failure it related to this: if i change this to the debug settings, the build works
             if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
                 storeFile file(MYAPP_UPLOAD_STORE_FILE)
                 storePassword MYAPP_UPLOAD_STORE_PASSWORD
